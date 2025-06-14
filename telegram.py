@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import telebot
 
-bot = telebot.TeleBot("8129142526:AAHfFyvHFJEBKhntSaPeWyiMU3e2CRMi_nw", parse_mode=None) # You can set parse_mode by default. HTML or MARKDOWN
+bot = telebot.TeleBot("token", parse_mode=None) # You can set parse_mode by default. HTML or MARKDOWN
 
 def get_results(Lastname, Name, SecondName, DocNumber):
     
