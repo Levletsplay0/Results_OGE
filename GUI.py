@@ -11,7 +11,6 @@ import os
 DATA_FILE = "user_data.json"
 
 def save_data(lastname, name, patronymic, doc_number):
-    """Сохраняет данные в JSON файл"""
     data = {
         "lastname": lastname,
         "name": name,
@@ -32,7 +31,6 @@ def load_data():
     return None
 
 def insert_saved_data():
-    """Вставляет сохраненные данные в поля ввода"""
     data = load_data()
     if data:
         entry_surname.delete(0, tkinter.END)
@@ -50,7 +48,6 @@ def insert_saved_data():
 def get_results(Lastname, Name, SecondName, DocNumber):
     btn_accept.config(state="disabled")
     try:
-        # Сохраняем данные перед запросом
         save_data(Lastname, Name, SecondName, DocNumber)
 
         label_progress.config(text="Обращение к серверу NSCM...\nВремя ожидания зависит от нагруженности сервера")
@@ -58,14 +55,12 @@ def get_results(Lastname, Name, SecondName, DocNumber):
         data = {"Lastname": Lastname, "Name": Name, "SecondName": SecondName, "DocNumber": DocNumber}
         res = requests.post("http://nscm.ru/giaresult/tablresult.php", data=data).content
 
-        # Создаём объект BeautifulSoup
         soup = BeautifulSoup(res, 'html.parser')
         name = soup.h2.get_text(strip=True)
         
 
-        # Извлекаем данные таблицы
         table = soup.find('table', class_='tab_result')
-        rows = table.find_all('tr')[1:]  # Пропускаем заголовок
+        rows = table.find_all('tr')[1:]
 
         results = []
         for row in rows:
@@ -99,7 +94,7 @@ root = tkinter.Tk()
 
 screen_width = root.winfo_screenwidth()  
 screen_height = root.winfo_screenheight()  
-# Вычисляем координаты окна  
+# Вычисляем координаты окна для "спавна" в центре экрана
 window_width = 500  
 window_height = 500  
 x = (screen_width // 2) - (window_width // 2)  
@@ -112,7 +107,7 @@ root.resizable(width=False, height=False)
 
 ttk.Label(text="Оценки ОГЭ", font="Bahnschrift 25 bold").place(x=250, y=40, anchor="center")
 ttk.Separator(root, orient="horizontal").place(width=270, x=250, y=70, anchor="center")
-# Поля ввода
+
 ttk.Label(text="Фамилия", font="Bahnschrift 15 bold").place(x=250, y=90, anchor="center")
 entry_surname = ttk.Entry(font="Bahnschrift 15")
 entry_surname.place(x=250, y=120, anchor="center", width=250, height=30)
@@ -129,14 +124,14 @@ ttk.Label(text="Номер паспорта", font="Bahnschrift 15 bold").place(
 entry_document = ttk.Entry(font="Bahnschrift 15")
 entry_document.place(x=250, y=300, anchor="center", width=250)
 
-# Кнопка для вставки сохраненных данных
+
 btn_load = ttk.Button(
     text="Вставить недавно использованные данные", 
     command=insert_saved_data
 )
 btn_load.place(x=250, y=350, anchor="center", width=250, height=30)
 
-# Основная кнопка
+
 btn_accept = ttk.Button(
     text="Получить результаты", 
     command=lambda: Thread(
