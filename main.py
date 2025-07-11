@@ -11,14 +11,14 @@ data = {"Lastname": Lastname, "Name": Name, "SecondName": SecondName, "DocNumber
 res = requests.post("http://nscm.ru/giaresult/tablresult.php", data=data).content
 
 
-# Создаём объект BeautifulSoup
+
 soup = BeautifulSoup(res, 'html.parser')
 name = soup.h2.get_text(strip=True)
 print(f"ФИО: {name}")
 
-# Извлекаем данные таблицы
+
 table = soup.find('table', class_='tab_result')
-rows = table.find_all('tr')[1:]  # Пропускаем заголовок
+rows = table.find_all('tr')[1:]
 
 results = []
 for row in rows:
