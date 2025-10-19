@@ -3,4 +3,4 @@
 - Исполняемый файл программы можно скачать в релизах.
 
 ## Скриншоты
-![Окно программы](https://github.com/jon/coolproject/raw/master/image/image.png)
+![Окно программы](https://raw.githubusercontent.com/Levletsplay0/Results_OGE/refs/heads/main/Screenshot.png)
