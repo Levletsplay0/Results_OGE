@@ -3,4 +3,4 @@
 - Исполняемый файл программы можно скачать в релизах.
 
 ## Скриншоты
-
+![Окно программы](https://github.com/jon/coolproject/raw/master/image/image.png)
