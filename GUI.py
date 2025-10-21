@@ -7,7 +7,7 @@ from tkinter.messagebox import showinfo, showerror
 import json
 import os
 
-# Файл для сохранения данных
+
 DATA_FILE = "user_data.json"
 
 def save_data(lastname, name, patronymic, doc_number):
@@ -21,7 +21,6 @@ def save_data(lastname, name, patronymic, doc_number):
         json.dump(data, f)
 
 def load_data():
-    """Загружает данные из JSON файла"""
     if os.path.exists(DATA_FILE):
         with open(DATA_FILE) as f:
             try:
@@ -94,7 +93,7 @@ root = tkinter.Tk()
 
 screen_width = root.winfo_screenwidth()  
 screen_height = root.winfo_screenheight()  
-# Вычисляем координаты окна для "спавна" в центре экрана
+
 window_width = 500  
 window_height = 500  
 x = (screen_width // 2) - (window_width // 2)  
@@ -150,3 +149,4 @@ label_progress.place(x=250, y=450, anchor="center")
 
 
 root.mainloop()
+
